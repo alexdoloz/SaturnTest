@@ -16,7 +16,84 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L4h-GM-XwS" customClass="TSValidatedTextField">
+                                <rect key="frame" x="129" y="134" width="342" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="342" id="Jhp-aI-hlY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Shq-gl-v4R">
+                                <rect key="frame" x="129" y="180" width="342" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-SL-5sL">
+                                <rect key="frame" x="0.0" y="64" width="600" height="29"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-Sm-Krm">
+                                        <rect key="frame" x="8" y="6" width="36" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.97110193060000005" green="0.97110193060000005" blue="0.97110193060000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.73431336879999998" green="0.26203635330000002" blue="0.4112530351" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstItem="zvT-Sm-Krm" firstAttribute="top" secondItem="wwb-SL-5sL" secondAttribute="top" constant="6" id="4ox-yw-vYC"/>
+                                    <constraint firstItem="zvT-Sm-Krm" firstAttribute="leading" secondItem="wwb-SL-5sL" secondAttribute="leading" constant="8" id="COh-ZL-hq0"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zvT-Sm-Krm" secondAttribute="trailing" constant="8" id="rZO-Se-9sT"/>
+                                    <constraint firstAttribute="bottom" secondItem="zvT-Sm-Krm" secondAttribute="bottom" constant="6" id="zfQ-xq-8mb"/>
+                                </constraints>
+                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ME9-H4-y7c">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="DZj-HW-nuP">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nuy-Bw-H18">
+                                <rect key="frame" x="427" y="218" width="44" height="30"/>
+                                <state key="normal" title="Войти"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wwb-SL-5sL" secondAttribute="trailing" id="2SW-S0-iAh"/>
+                            <constraint firstItem="Nuy-Bw-H18" firstAttribute="trailing" secondItem="Shq-gl-v4R" secondAttribute="trailing" id="7qd-Rm-sBe"/>
+                            <constraint firstItem="Nuy-Bw-H18" firstAttribute="top" secondItem="wwb-SL-5sL" secondAttribute="bottom" constant="8" id="AAb-zi-EG0"/>
+                            <constraint firstItem="Nuy-Bw-H18" firstAttribute="trailing" secondItem="wwb-SL-5sL" secondAttribute="trailing" id="C3B-eG-qP0"/>
+                            <constraint firstItem="wwb-SL-5sL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Enh-jo-QRg"/>
+                            <constraint firstItem="L4h-GM-XwS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="70" id="Hxf-16-0Vn"/>
+                            <constraint firstItem="wwb-SL-5sL" firstAttribute="top" secondItem="Shq-gl-v4R" secondAttribute="bottom" constant="16" id="J1T-S7-D8A"/>
+                            <constraint firstItem="Shq-gl-v4R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LLg-gh-3tA"/>
+                            <constraint firstItem="wwb-SL-5sL" firstAttribute="trailing" secondItem="L4h-GM-XwS" secondAttribute="trailing" id="Nvz-MB-tiu"/>
+                            <constraint firstItem="L4h-GM-XwS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="REu-bx-JrL"/>
+                            <constraint firstItem="Shq-gl-v4R" firstAttribute="leading" secondItem="L4h-GM-XwS" secondAttribute="leading" id="fwz-W9-veW"/>
+                            <constraint firstItem="Nuy-Bw-H18" firstAttribute="top" secondItem="Shq-gl-v4R" secondAttribute="bottom" constant="8" id="gPq-DZ-EHA"/>
+                            <constraint firstItem="Shq-gl-v4R" firstAttribute="trailing" secondItem="L4h-GM-XwS" secondAttribute="trailing" id="nN6-Ue-1Zo"/>
+                            <constraint firstItem="Shq-gl-v4R" firstAttribute="top" secondItem="L4h-GM-XwS" secondAttribute="bottom" constant="16" id="tzO-W4-Tz1"/>
+                            <constraint firstItem="wwb-SL-5sL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vdl-9A-M1M"/>
+                            <constraint firstItem="wwb-SL-5sL" firstAttribute="leading" secondItem="L4h-GM-XwS" secondAttribute="leading" id="vtw-qx-Xc8"/>
+                            <constraint firstItem="wwb-SL-5sL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zUs-QS-cAO"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ME9-H4-y7c"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="J1T-S7-D8A"/>
+                                <exclude reference="Nvz-MB-tiu"/>
+                                <exclude reference="vdl-9A-M1M"/>
+                                <exclude reference="vtw-qx-Xc8"/>
+                                <exclude reference="AAb-zi-EG0"/>
+                                <exclude reference="C3B-eG-qP0"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Логин" id="sdj-9Q-ceI"/>
                     <connections>
