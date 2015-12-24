@@ -7,20 +7,35 @@
 //
 
 import Foundation
+import SwiftyJSON
+
 
 struct Message {
-    var type: String
-    var sequenceId: NSUUID
-    var data: Dictionary<String, AnyObject>
+// MARK: JSON Keys
+    let TYPE_KEY = "type"
+    let SEQUENCE_ID_KEY = "sequence_id"
+    let DATA_KEY = "data"
 
-    init?(jsonString: String) {
-        return nil
-    }
-    
-    init(type: String, sequenceId: NSUUID, data: Dictionary<String, AnyObject>) {
+// MARK: Properties
+    var type: String
+    var sequenceId: String
+    var dataObject: Dictionary<String, AnyObject>
+
+// MARK: Initializers
+    init(type: String, sequenceId: String, dataObject: Dictionary<String, AnyObject>) {
         self.type = type
         self.sequenceId = sequenceId
-        self.data = data
+        self.dataObject = dataObject
+    }
+    
+    init?(jsonData: NSData) {
+        let json = JSON(data: jsonData)
+        guard let type = json[TYPE_KEY].string else { return nil }
+        guard let sequenceId = json[SEQUENCE_ID_KEY].string else { return nil }
+        guard let dataObject = json[DATA_KEY].dictionaryObject else { return nil }
+        self.type = type
+        self.sequenceId = sequenceId
+        self.dataObject = dataObject
     }
     
     var jsonString: String {

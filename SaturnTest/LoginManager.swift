@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LoginManager: NSObject {
 //    private var url: NSURL!
     private var socket: SRWebSocket!

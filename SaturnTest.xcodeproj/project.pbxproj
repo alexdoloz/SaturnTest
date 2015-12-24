@@ -17,7 +17,7 @@
 		11546A911C2C8054004BCEDD /* LoginResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11546A901C2C8054004BCEDD /* LoginResultViewController.swift */; };
 		11ADF32C1C2C8A1800454862 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ADF32B1C2C8A1800454862 /* LoginManager.swift */; };
 		11ADF32E1C2C8ED100454862 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ADF32D1C2C8ED100454862 /* Message.swift */; };
-		5ADC54D8180EB1D3459DD8C9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6ADC9FA8B52DED94FBD72F9 /* libPods.a */; };
+		EA59CD4C1EBEF84FF9D135A2 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD3E56165FC701291186E075 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +52,12 @@
 		11546A821C2C7922004BCEDD /* SaturnTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaturnTestUITests.swift; sourceTree = "<group>"; };
 		11546A841C2C7922004BCEDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11546A901C2C8054004BCEDD /* LoginResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResultViewController.swift; sourceTree = "<group>"; };
-		11ADF32A1C2C859500454862 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		11ADF32B1C2C8A1800454862 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		11ADF32D1C2C8ED100454862 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		11ADF32F1C2C95FB00454862 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		3C7BFD05108B9A2CF0FE35A8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5473742D24A0758BD380B4DE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		D6ADC9FA8B52DED94FBD72F9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD3E56165FC701291186E075 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ADC54D8180EB1D3459DD8C9 /* libPods.a in Frameworks */,
+				EA59CD4C1EBEF84FF9D135A2 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,9 +118,9 @@
 				11546A691C2C7921004BCEDD /* Assets.xcassets */,
 				11546A6B1C2C7921004BCEDD /* LaunchScreen.storyboard */,
 				11546A6E1C2C7921004BCEDD /* Info.plist */,
-				11ADF32A1C2C859500454862 /* Bridging-Header.h */,
 				11ADF32B1C2C8A1800454862 /* LoginManager.swift */,
 				11ADF32D1C2C8ED100454862 /* Message.swift */,
+				11ADF32F1C2C95FB00454862 /* BridgingHeader.h */,
 			);
 			path = SaturnTest;
 			sourceTree = "<group>";
@@ -146,7 +146,7 @@
 		35B30D4BD66B4B308946A34F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D6ADC9FA8B52DED94FBD72F9 /* libPods.a */,
+				DD3E56165FC701291186E075 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -491,7 +491,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.doloz.SaturnTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SaturnTest/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = SaturnTest/BridgingHeader.h;
 			};
 			name = Debug;
 		};
@@ -504,7 +504,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.doloz.SaturnTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SaturnTest/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = SaturnTest/BridgingHeader.h;
 			};
 			name = Release;
 		};
