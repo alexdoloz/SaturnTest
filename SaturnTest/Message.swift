@@ -38,7 +38,14 @@ struct Message {
         self.dataObject = dataObject
     }
     
-    var jsonString: String {
-        return ""
+// MARK: JSON Data
+    var jsonData: NSData {
+        let jsonDictionary = [
+            TYPE_KEY: type,
+            SEQUENCE_ID_KEY: sequenceId,
+            DATA_KEY: dataObject
+        ]
+        let data = try! NSJSONSerialization.dataWithJSONObject(jsonDictionary, options: [])
+        return data
     }
 }
