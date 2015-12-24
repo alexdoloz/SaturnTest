@@ -59,6 +59,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nuy-Bw-H18">
                                 <rect key="frame" x="427" y="218" width="44" height="30"/>
                                 <state key="normal" title="Войти"/>
+                                <connections>
+                                    <action selector="performLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0HQ-Tf-mR6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -97,6 +100,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Логин" id="sdj-9Q-ceI"/>
                     <connections>
+                        <outlet property="emailTextField" destination="L4h-GM-XwS" id="bGc-RO-3AI"/>
+                        <outlet property="passwordTextField" destination="Shq-gl-v4R" id="ptH-Ce-UfC"/>
                         <segue destination="dFv-I3-dpz" kind="show" identifier="ShowLoginResultVC" id="qDk-Gw-K24"/>
                     </connections>
                 </viewController>
