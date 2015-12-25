@@ -9,6 +9,9 @@
 import UIKit
 
 class LoginResultViewController: UIViewController {
+    var expirationDate: NSDate!
+    let dateFormatPattern = "dd.MM.yyyy HH:mm"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
