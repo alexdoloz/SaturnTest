@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="v4P-5r-Gyn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -105,7 +105,7 @@
                         <outlet property="errorView" destination="wwb-SL-5sL" id="keh-gc-XBJ"/>
                         <outlet property="loginButton" destination="Nuy-Bw-H18" id="LxJ-Jl-lZ5"/>
                         <outlet property="passwordTextField" destination="Shq-gl-v4R" id="ptH-Ce-UfC"/>
-                        <segue destination="dFv-I3-dpz" kind="show" identifier="ShowLoginResultVC" id="qDk-Gw-K24"/>
+                        <segue destination="dFv-I3-dpz" kind="presentation" identifier="ShowLoginResultVC" animates="NO" id="qDk-Gw-K24"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -115,7 +115,7 @@
         <!--Успешная аутентификация-->
         <scene sceneID="Ld1-4M-K7h">
             <objects>
-                <viewController id="dFv-I3-dpz" customClass="LoginResultViewController" customModule="SaturnTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LOGIN_RESULT" id="dFv-I3-dpz" customClass="LoginResultViewController" customModule="SaturnTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zgt-Xi-Ccl"/>
                         <viewControllerLayoutGuide type="bottom" id="3UV-Pv-JZ1"/>
@@ -124,10 +124,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="z3O-2F-YS4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="z3O-2F-YS4">
                                 <rect key="frame" x="236" y="107" width="128" height="128"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7t-I4-Ehf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7t-I4-Ehf">
                                 <rect key="frame" x="20" y="243" width="560" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,24 +151,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEl-qi-YgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2054" y="345"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uPN-jn-U8i">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v4P-5r-Gyn" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hlD-28-CFo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lNt-h4-mFM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DsX-yc-DxP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="448" y="345"/>
         </scene>
     </scenes>
     <resources>

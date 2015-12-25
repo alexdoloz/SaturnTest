@@ -35,9 +35,7 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
     func setupLoginManager() {
-        let testURLString = "ws://95.213.131.42:8080/customer-gateway/customer"
-        let url = NSURL(string: testURLString)!
-        manager = LoginManager(url: url)
+        manager = (UIApplication.sharedApplication().delegate! as! AppDelegate).loginManager
         manager.delegate = self
     }
     
@@ -71,8 +69,8 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
         }
     }
     
-    func showLoginResult(message: Message) {
-        performSegueWithIdentifier(showLoginResultSegueId, sender: message.apiTokenExpirationDate!)
+    func showLoginResult() {
+        performSegueWithIdentifier(showLoginResultSegueId, sender: manager.apiTokenExpirationDate!)
     }
     
     @IBOutlet weak var emailTextField: TSValidatedTextField!
@@ -99,7 +97,7 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
             showError(errorString)
         } else {
             if manager.hasFreshToken {
-                showLoginResult(message)
+                showLoginResult()
             }
         }
         print("message: \(message.jsonString)")

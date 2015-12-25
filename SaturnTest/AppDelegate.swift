@@ -12,10 +12,25 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    let testURL = NSURL(string: "ws://95.213.131.42:8080/customer-gateway/customer")!
+    var loginManager: LoginManager!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        loginManager = LoginManager(url: testURL)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let rootVC: UIViewController
+        if loginManager.hasFreshToken {
+            let loginResultVC = storyboard.instantiateViewControllerWithIdentifier("LOGIN_RESULT") as! LoginResultViewController
+            loginResultVC.expirationDate = loginManager.apiTokenExpirationDate!
+            rootVC = loginResultVC
+        } else {
+            rootVC = storyboard.instantiateInitialViewController()!
+        }
+        
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window.rootViewController = rootVC
+        window.makeKeyAndVisible()
         return true
     }
 
