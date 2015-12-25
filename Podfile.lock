@@ -1,10 +1,12 @@
 PODS:
   - SocketRocket (0.4.2)
+  - Starscream (1.0.2)
   - SwiftyJSON (2.3.2)
   - TSValidatedTextField (1.0.0)
 
 DEPENDENCIES:
   - SocketRocket (~> 0.4.2)
+  - Starscream (~> 1.0.0)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TSValidatedTextField (~> 1.0)
 
@@ -19,6 +21,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   SocketRocket: ffe08119b00ef982f6c37052a4705a057c8494ad
+  Starscream: 40e2c4c1c770d811f24116b8b7dbeb4542c56767
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TSValidatedTextField: c6ce2cba5ee58b3b9d39faa71e9ddb72fe09a3df
 

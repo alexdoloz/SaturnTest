@@ -48,4 +48,8 @@ struct Message {
         let data = try! NSJSONSerialization.dataWithJSONObject(jsonDictionary, options: [])
         return data
     }
+    
+    var jsonString: String {
+        return NSString(data: jsonData, encoding: NSUTF8StringEncoding)! as String
+    }
 }

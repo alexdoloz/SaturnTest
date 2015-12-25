@@ -7,58 +7,92 @@
 //
 
 import UIKit
+import Starscream
 
 
-class LoginManager: NSObject, SRWebSocketDelegate {
+protocol LoginManagerDelegate: class {
+    func loginManagerDidOpenConnection(manager: LoginManager)
+    func loginManager(manager: LoginManager, didReceiveMessage message: Message)
+    func loginManager(manager: LoginManager, didFailWithError error: NSError)
+}
+
+class LoginManager: NSObject, WebSocketDelegate {
 // MARK: Constants
     let LOGIN_CUSTOMER = "LOGIN_CUSTOMER"
     let EMAIL_KEY = "email"
     let PASSWORD_KEY = "password"
     
 // MARK: Variables
-    private var socket: SRWebSocket!
+    private var socket: WebSocket!
     private var sequenceId: String
     
-    private var isSocketOpened = false
+//    private var isSocketOpened = false
+    
+    weak var delegate: LoginManagerDelegate?
     
     init(url: NSURL) {
-        socket = SRWebSocket(URL: url)
+        socket = WebSocket(url: url)
         sequenceId = NSUUID().UUIDString
+        socket.connect()
         super.init()
         socket.delegate = self
-        socket.open()
-        
+//        socket.onConnect = {
+//
+//        }
+//        socket.onText = { text in
+//            print("Got text : \(text)")
+//        }
+//        socket.onData = { data in
+//            print("Got data: \(data)")
+//        }
+//        socket.onDisconnect = { error in
+//            print("Error: \(error)")
+//        }
     }
     
     deinit {
         socket.delegate = nil
-        socket.close()
+        socket.disconnect()
     }
     
-    func performLogin(email email: String, password: String, completion: (NSError?) -> Void) {
-        guard isSocketOpened else { return }
+    func performLogin(email email: String, password: String) {
+//        guard isSocketOpened else { return }
+        guard socket.isConnected else { return }
         let message = Message(type: LOGIN_CUSTOMER, sequenceId: sequenceId, dataObject: [
             EMAIL_KEY : email,
             PASSWORD_KEY : password
         ])
-        socket.send(message.jsonData)
+        socket.writeString(message.jsonString)
     }
     
-// MARK: SRWebSocketDelegate
-    func webSocketDidOpen(webSocket: SRWebSocket!) {
-        isSocketOpened = true
-        print("Socket did open")
+// MARK: WebSocketDelegate
+    func websocketDidConnect(socket: WebSocket) {
+        if delegate != nil {
+            delegate!.loginManagerDidOpenConnection(self)
+        }
     }
     
-    func webSocket(webSocket: SRWebSocket!, didFailWithError error: NSError!) {
-        print("Socket failed with error: \(error)")
+    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
+        if error != nil {
+            if delegate != nil {
+                delegate!.loginManager(self, didFailWithError: error!)
+            }
+            socket.connect()
+        }
     }
     
-    func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject!) {
-        print("Got message! \(message)")
+    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+        if delegate != nil {
+            if let message = Message(jsonData: text.dataUsingEncoding(NSUTF8StringEncoding)!) {
+                delegate!.loginManager(self, didReceiveMessage: message)
+            } else {
+                let error = NSError(domain: "Text is not valid message", code: 111, userInfo: nil)
+                delegate!.loginManager(self, didFailWithError: error)
+            }
+        }
     }
     
-    func webSocket(webSocket: SRWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        print("Code: \(code)")
+    func websocketDidReceiveData(socket: WebSocket, data: NSData) {
+    
     }
 }
