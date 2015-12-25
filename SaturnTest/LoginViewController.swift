@@ -35,8 +35,9 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
     func addActionsToTextFields() {
-        emailTextField.addTarget(self, action: Selector("emailChanged"), forControlEvents: .EditingChanged)
-        passwordTextField.addTarget(self, action: Selector("passwordChanged"), forControlEvents: .EditingChanged)
+        let action = Selector("updateTextFields")
+        emailTextField.addTarget(self, action: action, forControlEvents: .EditingChanged)
+        passwordTextField.addTarget(self, action: action, forControlEvents: .EditingChanged)
     }
     
     func updateLoginButtonAvailability() {
@@ -45,8 +46,16 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
     func showError(errorString: String) {
-        errorView.alpha = 1.0
         errorLabel.text = errorString
+        UIView.animateWithDuration(0.25) {
+            self.errorView.alpha = 1.0
+        }
+    }
+    
+    func hideError() {
+        UIView.animateWithDuration(0.25) {
+            self.errorView.alpha = 0.0
+        }
     }
     
     @IBOutlet weak var emailTextField: TSValidatedTextField!
@@ -81,14 +90,9 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
 // MARK: Text field actions
-    func emailChanged() {
+    func updateTextFields() {
         updateLoginButtonAvailability()
+        hideError()
     }
-    
-    func passwordChanged() {
-        updateLoginButtonAvailability()
-    }
-    
-// MARK: UITextFieldDelegate
 }
 
