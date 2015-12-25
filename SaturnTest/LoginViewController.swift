@@ -15,13 +15,21 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let message = Message(type: "LOGIN_CUSTOMER", sequenceId: "a29e4fd0-581d-e06b-c837-4f5f4be7dd18", dataObject: ["email" : "fpi@bk.ru", "password" : "123123"])
-//        print("\(message.jsonData)")
-//        print("\(NSString(data: message.jsonData, encoding: NSUTF8StringEncoding)))")
+        setupLoginManager()
+        setupEmailValidation()
+    }
+    
+    func setupLoginManager() {
         let testURLString = "ws://95.213.131.42:8080/customer-gateway/customer"
         let url = NSURL(string: testURLString)!
         manager = LoginManager(url: url)
         manager.delegate = self
+    }
+    
+    func setupEmailValidation() {
+        emailTextField.regexpValidColor = UIColor.blackColor()
+        emailTextField.regexpInvalidColor = UIColor.redColor()
+        emailTextField.regexp = try! NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}", options: [])
     }
     
     @IBOutlet weak var emailTextField: TSValidatedTextField!
