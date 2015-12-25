@@ -11,6 +11,9 @@ import TSValidatedTextField
 
 
 class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDelegate {
+    let showLoginResultSegueId = "ShowLoginResultVC"
+    
+    
     var manager: LoginManager!
 
     override func viewDidLoad() {
@@ -19,6 +22,16 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
         setupEmailValidation()
         addActionsToTextFields()
         updateLoginButtonAvailability()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+            case showLoginResultSegueId:
+                let loginResultVC = segue.destinationViewController as! LoginResultViewController
+                loginResultVC.expirationDate = sender as! NSDate
+            default:
+                break
+        }
     }
     
     func setupLoginManager() {
@@ -58,6 +71,10 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
         }
     }
     
+    func showLoginResult(message: Message) {
+        performSegueWithIdentifier(showLoginResultSegueId, sender: message.apiTokenExpirationDate!)
+    }
+    
     @IBOutlet weak var emailTextField: TSValidatedTextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
@@ -80,6 +97,10 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     func loginManager(manager: LoginManager, didReceiveMessage message: Message) {
         if let errorString = message.errorString {
             showError(errorString)
+        } else {
+            if manager.hasFreshToken {
+                showLoginResult(message)
+            }
         }
         print("message: \(message.jsonString)")
     }

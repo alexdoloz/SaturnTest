@@ -22,11 +22,15 @@ class LoginManager: NSObject, WebSocketDelegate {
     let EMAIL_KEY = "email"
     let PASSWORD_KEY = "password"
     
-// MARK: Variables
-    private var socket: WebSocket!
-    private var sequenceId: String
+    let API_TOKEN_STORAGE_KEY = "API_TOKEN"
+    let API_TOKEN_EXPIRATION_DATE_STORAGE_KEY = "API_TOKEN_EXPIRATION_DATE"
     
-//    private var isSocketOpened = false
+// MARK: Variables
+    var socket: WebSocket!
+    var sequenceId: String
+    
+    var apiToken: String?
+    var apiTokenExpirationDate: NSDate?
     
     weak var delegate: LoginManagerDelegate?
     
@@ -36,23 +40,31 @@ class LoginManager: NSObject, WebSocketDelegate {
         socket.connect()
         super.init()
         socket.delegate = self
-//        socket.onConnect = {
-//
-//        }
-//        socket.onText = { text in
-//            print("Got text : \(text)")
-//        }
-//        socket.onData = { data in
-//            print("Got data: \(data)")
-//        }
-//        socket.onDisconnect = { error in
-//            print("Error: \(error)")
-//        }
+        loadToken()
     }
     
     deinit {
         socket.delegate = nil
         socket.disconnect()
+    }
+    
+    func loadToken() {
+        apiToken = (NSUserDefaults.standardUserDefaults().objectForKey(API_TOKEN_STORAGE_KEY) as? String)
+        apiTokenExpirationDate = (NSUserDefaults.standardUserDefaults().objectForKey(API_TOKEN_EXPIRATION_DATE_STORAGE_KEY) as? NSDate)
+    }
+    
+    func saveToken() {
+        NSUserDefaults.standardUserDefaults().setObject(apiToken!, forKey: API_TOKEN_STORAGE_KEY)
+        NSUserDefaults.standardUserDefaults().setObject(apiTokenExpirationDate!, forKey: API_TOKEN_EXPIRATION_DATE_STORAGE_KEY)
+    }
+    
+    var hasFreshToken: Bool {
+        guard apiToken != nil else { return false }
+        guard let expirationDate = apiTokenExpirationDate else { return false }
+        guard expirationDate.compare(NSDate()) == .OrderedDescending else {
+            return false
+        }
+        return true
     }
     
     func performLogin(email email: String, password: String) {
@@ -84,6 +96,11 @@ class LoginManager: NSObject, WebSocketDelegate {
     func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         if delegate != nil {
             if let message = Message(jsonData: text.dataUsingEncoding(NSUTF8StringEncoding)!) {
+                self.apiToken = message.apiToken
+                self.apiTokenExpirationDate = message.apiTokenExpirationDate
+                if self.apiToken != nil && self.apiTokenExpirationDate != nil {
+                    saveToken()
+                }
                 delegate!.loginManager(self, didReceiveMessage: message)
             } else {
                 let error = NSError(domain: "Text is not valid message", code: 111, userInfo: nil)

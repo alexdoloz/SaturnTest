@@ -10,9 +10,18 @@ import UIKit
 
 class LoginResultViewController: UIViewController {
     var expirationDate: NSDate!
-    let dateFormatPattern = "dd.MM.yyyy HH:mm"
+    let dateFormat = "dd.MM.yyyy HH:mm"
+    let dateFormatter = NSDateFormatter()
+    
+    @IBOutlet weak var expirationDateLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = dateFormat
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        expirationDateLabel.text = dateFormatter.stringFromDate(expirationDate)
     }
 }
