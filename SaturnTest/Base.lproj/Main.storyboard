@@ -101,6 +101,7 @@
                     <navigationItem key="navigationItem" title="Логин" id="sdj-9Q-ceI"/>
                     <connections>
                         <outlet property="emailTextField" destination="L4h-GM-XwS" id="bGc-RO-3AI"/>
+                        <outlet property="loginButton" destination="Nuy-Bw-H18" id="LxJ-Jl-lZ5"/>
                         <outlet property="passwordTextField" destination="Shq-gl-v4R" id="ptH-Ce-UfC"/>
                         <segue destination="dFv-I3-dpz" kind="show" identifier="ShowLoginResultVC" id="qDk-Gw-K24"/>
                     </connections>

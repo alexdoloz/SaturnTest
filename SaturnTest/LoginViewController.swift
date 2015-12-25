@@ -10,13 +10,15 @@ import UIKit
 import TSValidatedTextField
 
 
-class LoginViewController: UIViewController, LoginManagerDelegate {
+class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDelegate {
     var manager: LoginManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoginManager()
         setupEmailValidation()
+        addActionsToTextFields()
+        updateLoginButtonAvailability()
     }
     
     func setupLoginManager() {
@@ -32,9 +34,20 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
         emailTextField.regexp = try! NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}", options: [])
     }
     
+    func addActionsToTextFields() {
+        emailTextField.addTarget(self, action: Selector("emailChanged"), forControlEvents: .EditingChanged)
+        passwordTextField.addTarget(self, action: Selector("passwordChanged"), forControlEvents: .EditingChanged)
+    }
+    
+    func updateLoginButtonAvailability() {
+        loginButton.enabled = emailTextField.isValid && (passwordTextField.text! as NSString).length != 0
+    }
+    
     @IBOutlet weak var emailTextField: TSValidatedTextField!
     
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func performLogin(sender: AnyObject) {
         manager.performLogin(email: emailTextField.text!, password: passwordTextField.text!)
@@ -52,5 +65,16 @@ class LoginViewController: UIViewController, LoginManagerDelegate {
     func loginManager(manager: LoginManager, didFailWithError error: NSError) {
         print("error: \(error)")
     }
+    
+// MARK: Text field actions
+    func emailChanged() {
+        updateLoginButtonAvailability()
+    }
+    
+    func passwordChanged() {
+        updateLoginButtonAvailability()
+    }
+    
+// MARK: UITextFieldDelegate
 }
 
