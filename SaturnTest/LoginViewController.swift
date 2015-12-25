@@ -40,7 +40,13 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
     func updateLoginButtonAvailability() {
+        emailTextField.validate()
         loginButton.enabled = emailTextField.isValid && (passwordTextField.text! as NSString).length != 0
+    }
+    
+    func showError(errorString: String) {
+        errorView.alpha = 1.0
+        errorLabel.text = errorString
     }
     
     @IBOutlet weak var emailTextField: TSValidatedTextField!
@@ -53,17 +59,25 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
         manager.performLogin(email: emailTextField.text!, password: passwordTextField.text!)
     }
     
+    @IBOutlet weak var errorView: UIView!
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    
 // MARK: LoginManagerDelegate
     func loginManagerDidOpenConnection(manager: LoginManager) {
         print("connect!")
     }
     
     func loginManager(manager: LoginManager, didReceiveMessage message: Message) {
+        if let errorString = message.errorString {
+            showError(errorString)
+        }
         print("message: \(message.jsonString)")
     }
     
     func loginManager(manager: LoginManager, didFailWithError error: NSError) {
         print("error: \(error)")
+        showError(error.localizedDescription)
     }
     
 // MARK: Text field actions

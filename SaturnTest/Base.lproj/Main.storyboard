@@ -30,7 +30,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-SL-5sL">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwb-SL-5sL">
                                 <rect key="frame" x="0.0" y="64" width="600" height="29"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvT-Sm-Krm">
@@ -101,6 +101,8 @@
                     <navigationItem key="navigationItem" title="Логин" id="sdj-9Q-ceI"/>
                     <connections>
                         <outlet property="emailTextField" destination="L4h-GM-XwS" id="bGc-RO-3AI"/>
+                        <outlet property="errorLabel" destination="zvT-Sm-Krm" id="Y46-9h-iZu"/>
+                        <outlet property="errorView" destination="wwb-SL-5sL" id="keh-gc-XBJ"/>
                         <outlet property="loginButton" destination="Nuy-Bw-H18" id="LxJ-Jl-lZ5"/>
                         <outlet property="passwordTextField" destination="Shq-gl-v4R" id="ptH-Ce-UfC"/>
                         <segue destination="dFv-I3-dpz" kind="show" identifier="ShowLoginResultVC" id="qDk-Gw-K24"/>

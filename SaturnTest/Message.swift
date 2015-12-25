@@ -15,6 +15,7 @@ struct Message {
     let TYPE_KEY = "type"
     let SEQUENCE_ID_KEY = "sequence_id"
     let DATA_KEY = "data"
+    let ERROR_DESCRIPTION_KEY = "error_description"
 
 // MARK: Properties
     var type: String
@@ -51,5 +52,9 @@ struct Message {
     
     var jsonString: String {
         return NSString(data: jsonData, encoding: NSUTF8StringEncoding)! as String
+    }
+    
+    var errorString: String? {
+        return dataObject[ERROR_DESCRIPTION_KEY] as? String
     }
 }
