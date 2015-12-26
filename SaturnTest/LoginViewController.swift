@@ -56,17 +56,25 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
         loginButton.enabled = emailTextField.isValid && (passwordTextField.text! as NSString).length != 0
     }
     
-    func showError(errorString: String) {
-        errorLabel.text = errorString
+    func showViewWithAnimation(view: UIView) {
         UIView.animateWithDuration(0.25) {
-            self.errorView.alpha = 1.0
+            view.alpha = 1.0
         }
     }
     
-    func hideError() {
+    func hideViewWithAnimation(view: UIView) {
         UIView.animateWithDuration(0.25) {
-            self.errorView.alpha = 0.0
+            view.alpha = 0.0
         }
+    }
+    
+    func showError(errorString: String) {
+        errorLabel.text = errorString
+        showViewWithAnimation(errorView)
+    }
+    
+    func hideError() {
+        hideViewWithAnimation(errorView)
     }
     
     func showLoginResult() {
@@ -79,8 +87,11 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var dimmingView: UIView!
+    
     @IBAction func performLogin(sender: AnyObject) {
         manager.performLogin(email: emailTextField.text!, password: passwordTextField.text!)
+        dimmingView.hidden = false
     }
     
     @IBOutlet weak var errorView: UIView!
@@ -93,6 +104,7 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
     func loginManager(manager: LoginManager, didReceiveMessage message: Message) {
+        dimmingView.hidden = true
         if let errorString = message.errorString {
             showError(errorString)
         } else {
@@ -104,6 +116,7 @@ class LoginViewController: UIViewController, LoginManagerDelegate, UITextFieldDe
     }
     
     func loginManager(manager: LoginManager, didFailWithError error: NSError) {
+        dimmingView.hidden = true
         print("error: \(error)")
         showError(error.localizedDescription)
     }

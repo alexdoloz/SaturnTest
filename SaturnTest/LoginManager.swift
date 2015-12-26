@@ -110,6 +110,6 @@ class LoginManager: NSObject, WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocket, data: NSData) {
-    
+        print("LoginManager's socket is not supposed to receive data, only text")
     }
 }
