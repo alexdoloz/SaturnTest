@@ -28,9 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             rootVC = storyboard.instantiateInitialViewController()!
         }
         
-        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window.rootViewController = rootVC
-        window.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window!.rootViewController = rootVC
+        window!.makeKeyAndVisible()
+        
         return true
     }
 
